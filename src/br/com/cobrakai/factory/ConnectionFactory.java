@@ -9,7 +9,7 @@ public class ConnectionFactory {
     private static final String USERNAME = "root";
     
     //senha do banco
-    private static final String PASSWORD = "ads01000001";
+    private static final String PASSWORD = "123";
     
     //caminho bando de dados.
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/cobrakai";
