@@ -3,6 +3,9 @@ package br.com.cobrakai.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.cobrakai.factory.ConnectionFactory;
 import br.com.cobrakai.model.Aluno;
@@ -44,4 +47,47 @@ public class AlunoDAO {
             }
         }
     }
+
+    public List<Aluno> getAll() {
+        String sql = "SELECT * FROM alunos";
+        List<Aluno> alunos = new ArrayList<>();
+
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        //Classe que vai recuperar os dados do banco.
+        ResultSet rst = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            rst = pstm.executeQuery();
+            while(rst.next()){
+                Aluno aluno = new Aluno();
+                aluno.setId(rst.getInt("id"));
+                aluno.setNome(rst.getString("nome"));
+                aluno.setIdade(rst.getInt("idade"));
+                aluno.setCadastro(rst.getDate("cadastro"));
+
+                alunos.add(aluno);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+                if(rst!=null){
+                    rst.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return alunos;
+    }
 }
+
