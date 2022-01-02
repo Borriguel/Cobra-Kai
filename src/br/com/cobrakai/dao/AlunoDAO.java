@@ -115,5 +115,39 @@ public class AlunoDAO {
             }
         }
     }
+
+    public void update(Aluno aluno){
+        String sql = "UPDATE alunos SET nome = ?, idade = ?" + 
+        " WHERE id = ?";
+        Connection conn = null;
+        PreparedStatement pstm = null;
+
+        try {
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            //Adicionar os valores esperados para query
+            pstm.setString(1, aluno.getNome());
+            pstm.setInt(2, aluno.getIdade());
+            pstm.setInt(3, aluno.getId());
+
+            //Executar a query
+            pstm.execute();
+            System.out.println("Aluno(a) atualizado com sucesso.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            //Fechar as conexões
+            try{
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
