@@ -2,7 +2,9 @@ package br.com.cobrakai.factory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 public class ConnectionFactory {
     
@@ -24,6 +26,38 @@ public class ConnectionFactory {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    //métodos auxiliares para fechar conexões
+
+    public static void closeStatement(PreparedStatement pstm){
+        if(pstm!= null){
+            try{
+                pstm.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }        
+    }
+
+    public static void closeConnection(Connection conn){
+        if(conn!= null){
+            try{
+                conn.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }        
+    }
+
+    public static void closeResultSet(ResultSet rst){
+        if(rst!= null){
+            try{
+                rst.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+        }        
     }
 
     public static void main(String[] args) throws SQLException {
