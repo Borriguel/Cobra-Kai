@@ -47,7 +47,6 @@ public class AlunoDAO {
             }
         }
     }
-
     public List<Aluno> getAll() {
         String sql = "SELECT * FROM alunos";
         List<Aluno> alunos = new ArrayList<>();
@@ -88,6 +87,32 @@ public class AlunoDAO {
             }
         }
         return alunos;
+    }
+
+    public void deleteByID(Integer id){
+        String sql = "DELETE FROM alunos WHERE id = ?";
+        Connection conn= null;
+        PreparedStatement pstm = null;
+        try{
+            conn = ConnectionFactory.createConnectionToMySQL();
+            pstm = (PreparedStatement) conn.prepareStatement(sql);
+            pstm.setInt(1, id);
+            pstm.execute();
+            System.out.println("Aluno(a) de Id " + id + " deletado com sucesso.");
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            try{
+                if(pstm!=null){
+                    pstm.close();
+                }
+                if(conn!=null){
+                    conn.close();
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }
 
