@@ -13,10 +13,15 @@ public class App {
         aluno.setIdade(56);
         aluno.setCadastro(new Date());
         alunoDAO.save(aluno);
-
         //teste 1
         for (Aluno x : alunoDAO.getAll()) {
             System.out.println("Id - " +x.getId() + " | Nome - " + x.getNome() + " | Idade - "+ x.getIdade() + " | Data do Cadastro - " + x.getCadastro());
         }
+        //teste deleteById()
+        alunoDAO.deleteByID(4);
+        for (Aluno x : alunoDAO.getAll()) {
+            System.out.println("Id - " +x.getId() + " | Nome - " + x.getNome() + " | Idade - "+ x.getIdade() + " | Data do Cadastro - " + x.getCadastro());
+        }
+
     }
 }
