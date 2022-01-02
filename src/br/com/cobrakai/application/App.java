@@ -18,7 +18,7 @@ public class App {
             System.out.println("Id - " +x.getId() + " | Nome - " + x.getNome() + " | Idade - "+ x.getIdade() + " | Data do Cadastro - " + x.getCadastro());
         }
         //teste deleteById()
-        alunoDAO.deleteByID(4);
+        alunoDAO.deleteByID(5);
         for (Aluno x : alunoDAO.getAll()) {
             System.out.println("Id - " +x.getId() + " | Nome - " + x.getNome() + " | Idade - "+ x.getIdade() + " | Data do Cadastro - " + x.getCadastro());
         }

@@ -2,6 +2,7 @@ package br.com.cobrakai.factory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class ConnectionFactory {
     
@@ -16,14 +17,16 @@ public class ConnectionFactory {
 
     //conexão com o banco de dados.
 
-    public static Connection createConnectionToMySQL() throws Exception{
-        //faz a classe ser carregada pela jvm
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
-        return connection;
+    public static Connection createConnectionToMySQL(){
+        try {
+            Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
+            return connection;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws SQLException {
         //recuperar conexão com o banco de dados
         Connection con = createConnectionToMySQL();
 

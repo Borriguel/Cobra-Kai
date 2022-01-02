@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class AlunoDAO {
             //Executar a query
             pstm.execute();
             System.out.println("Aluno(a) registrado com sucesso.");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally{
             //Fechar as conexões
@@ -42,7 +43,7 @@ public class AlunoDAO {
                 if(conn!=null){
                     conn.close();
                 }
-            } catch (Exception e){
+            } catch (SQLException e){
                 e.printStackTrace();
             }
         }
@@ -69,7 +70,7 @@ public class AlunoDAO {
 
                 alunos.add(aluno);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -82,7 +83,7 @@ public class AlunoDAO {
                 if(rst!=null){
                     rst.close();
                 }
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -99,7 +100,7 @@ public class AlunoDAO {
             pstm.setInt(1, id);
             pstm.execute();
             System.out.println("Aluno(a) de Id " + id + " deletado com sucesso.");
-        } catch (Exception e){
+        } catch (SQLException e){
             e.printStackTrace();
         } finally {
             try{
@@ -109,7 +110,7 @@ public class AlunoDAO {
                 if(conn!=null){
                     conn.close();
                 }
-            } catch (Exception e){
+            } catch (SQLException e){
                 e.printStackTrace();
             }
         }
