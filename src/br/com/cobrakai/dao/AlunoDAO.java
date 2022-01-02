@@ -36,16 +36,8 @@ public class AlunoDAO {
             e.printStackTrace();
         } finally{
             //Fechar as conexões
-            try{
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(conn!=null){
-                    conn.close();
-                }
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
+            ConnectionFactory.closeStatement(pstm);
+            ConnectionFactory.closeConnection(conn);
         }
     }
     public List<Aluno> getAll() {
@@ -73,19 +65,9 @@ public class AlunoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(conn!=null){
-                    conn.close();
-                }
-                if(rst!=null){
-                    rst.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            ConnectionFactory.closeStatement(pstm);
+            ConnectionFactory.closeConnection(conn);
+            ConnectionFactory.closeResultSet(rst);
         }
         return alunos;
     }
@@ -103,16 +85,8 @@ public class AlunoDAO {
         } catch (SQLException e){
             e.printStackTrace();
         } finally {
-            try{
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(conn!=null){
-                    conn.close();
-                }
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
+            ConnectionFactory.closeStatement(pstm);
+            ConnectionFactory.closeConnection(conn);
         }
     }
 
@@ -137,16 +111,8 @@ public class AlunoDAO {
             e.printStackTrace();
         } finally{
             //Fechar as conexões
-            try{
-                if(pstm!=null){
-                    pstm.close();
-                }
-                if(conn!=null){
-                    conn.close();
-                }
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
+            ConnectionFactory.closeStatement(pstm);
+            ConnectionFactory.closeConnection(conn);
         }
     }
 }
